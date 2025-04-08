@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakiye Transfer - Çay Sipariş Sistemi</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">Bakiye Transfer</h3>
+                    </div>
+                    <div class="card-body">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ category if category != 'message' else 'info' }}">{{ message }}</div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                        
+                        <div class="mb-3">
+                            <div class="alert alert-info">
+                                <strong>Mevcut Bakiyeniz:</strong> <span id="current-balance">Yükleniyor...</span>
+                            </div>
+                        </div>
+                        
+                        <form method="post" action="{{ url_for('balance_transfer') }}">
+                            <div class="mb-3">
+                                <label for="room" class="form-label">Alıcı Oda</label>
+                                <select class="form-select" id="room" name="room" required>
+                                    <option value="">-- Oda Seçin --</option>
+                                    {% for room_name in rooms %}
+                                    <option value="{{ room_name }}">{{ room_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="person" class="form-label">Alıcı Kişi</label>
+                                <select class="form-select" id="person" name="person" required disabled>
+                                    <option value="">-- Kişi Seçin --</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="amount" class="form-label">Miktar (TL)</label>
+                                <input type="number" class="form-control" id="amount" name="amount" min="1" step="0.01" required>
+                            </div>
+                            
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Gönder</button>
+                                <a href="{{ url_for('index') }}" class="btn btn-secondary">Ana Sayfaya Dön</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Sayfa yüklendiğinde bakiyeyi çek
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/api/balance')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('current-balance').textContent = data.balance.toFixed(2) + ' TL';
+                })
+                .catch(error => {
+                    console.error('Bakiye bilgisi alınamadı:', error);
+                    document.getElementById('current-balance').textContent = 'Hata!';
+                });
+            
+            // Oda seçildiğinde kişileri getir
+            document.getElementById('room').addEventListener('change', function() {
+                const roomName = this.value;
+                const personSelect = document.getElementById('person');
+                
+                if (!roomName) {
+                    personSelect.disabled = true;
+                    personSelect.innerHTML = '<option value="">-- Kişi Seçin --</option>';
+                    return;
+                }
+                
+                fetch(`/api/room/${roomName}/persons`)
+                    .then(response => response.json())
+                    .then(persons => {
+                        personSelect.innerHTML = '<option value="">-- Kişi Seçin --</option>';
+                        persons.forEach(person => {
+                            const option = document.createElement('option');
+                            option.value = person;
+                            option.textContent = person;
+                            personSelect.appendChild(option);
+                        });
+                        personSelect.disabled = false;
+                    })
+                    .catch(error => {
+                        console.error('Kişi bilgileri alınamadı:', error);
+                    });
+            });
+        });
+    </script>
+</body>
+</html> 

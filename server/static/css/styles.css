@@ -1,0 +1,89 @@
+/* Main Styles */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card-header {
+    font-weight: bold;
+}
+
+.btn {
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Product Buttons */
+.other-drink {
+    margin-bottom: 8px;
+}
+
+/* Cart Styles */
+#cart {
+    min-height: 150px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+#cart .list-group-item {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#cart .list-group-item:hover {
+    background-color: #f1f1f1;
+}
+
+#cart .list-group-item.active {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+/* Order Note */
+#order-note {
+    resize: none;
+}
+
+/* Modal Styles */
+.modal-content {
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+    background-color: #007bff;
+    color: white;
+    border-radius: 8px 8px 0 0;
+}
+
+/* Button States */
+.btn-disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* Notification */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+} 

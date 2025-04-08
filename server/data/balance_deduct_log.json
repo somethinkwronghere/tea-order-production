@@ -1,0 +1,26 @@
+[
+    {
+        "timestamp": "2025-03-25 10:02:03",
+        "admin_id": "Bilgi İşlem:Hasan Bulut",
+        "user_id": "Basın:bilal burak",
+        "amount": 50
+    },
+    {
+        "timestamp": "2025-03-25 10:02:50",
+        "admin_id": "Bilgi İşlem:Hasan Bulut",
+        "user_id": "Basın:bilal burak",
+        "amount": 500
+    },
+    {
+        "timestamp": "2025-03-25 10:15:58",
+        "admin_id": "Satış:Ahmet Alp",
+        "user_id": "Basın:bilal burak",
+        "amount": 1152
+    },
+    {
+        "timestamp": "2025-03-25 11:10:58",
+        "admin_id": "Satış:Ahmet Alp",
+        "user_id": "Basın:bilal burak",
+        "amount": 800
+    }
+]

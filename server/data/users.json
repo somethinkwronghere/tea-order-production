@@ -1,0 +1,206 @@
+{
+    "Muhasebe:Bekir Çetin": {
+        "password": "89dd46dbd496ca4ec56fbd7ca67a1e33769198bf2686f3dca918f34d16f9bdcb",
+        "first_login": false,
+        "room": "Muhasebe",
+        "person": "Bekir Çetin",
+        "balance": 28.0
+    },
+    "Muhasebe:Ayşe Alp": {
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "first_login": true,
+        "room": "Muhasebe",
+        "person": "Ayşe Alp"
+    },
+    "Muhasebe:Meryem Çelik": {
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "first_login": true,
+        "room": "Muhasebe",
+        "person": "Meryem Çelik"
+    },
+    "Muhasebe:Şerife Yalçın": {
+        "password": "28b76ee3018a91a8949d6c0483ae404af29c728ca835e02400dd85cd0e5d0cfc",
+        "first_login": false,
+        "room": "Muhasebe",
+        "person": "Şerife Yalçın"
+    },
+    "İnsan Kaynakları:Muhammed Aktaş": {
+        "password": "331a3e558a2ecb462d3f0f70f9fae74eb0b3217d969d8478c2d3d99e0d62607c",
+        "first_login": false,
+        "room": "İnsan Kaynakları",
+        "person": "Muhammed Aktaş",
+        "balance": 3
+    },
+    "İnsan Kaynakları:Hatice Doğan": {
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "first_login": false,
+        "room": "İnsan Kaynakları",
+        "person": "Hatice Doğan",
+        "balance": 43.0
+    },
+    "İnsan Kaynakları:Emine Aydın": {
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "first_login": true,
+        "room": "İnsan Kaynakları",
+        "person": "Emine Aydın",
+        "balance": 100
+    },
+    "İnsan Kaynakları:Meryem Kaya": {
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "first_login": true,
+        "room": "İnsan Kaynakları",
+        "person": "Meryem Kaya",
+        "balance": 131
+    },
+    "Bilgi İşlem:Meryem Bulut": {
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "first_login": false,
+        "room": "Bilgi İşlem",
+        "person": "Meryem Bulut",
+        "balance": 50.0
+    },
+    "Bilgi İşlem:Emine Doğan": {
+        "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+        "first_login": false,
+        "room": "Bilgi İşlem",
+        "person": "Emine Doğan",
+        "balance": 374.0
+    },
+    "Bilgi İşlem:Ali Barış": {
+        "password": "df0201414b2352e32526a367b37df561224a9fe65e7354f30824e7824b1876e0",
+        "first_login": false,
+        "room": "Bilgi İşlem",
+        "person": "Ali Barış",
+        "balance": 101.0
+    },
+    "Pazarlama:Hüseyin Öztürk": {
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "first_login": true,
+        "room": "Pazarlama",
+        "person": "Hüseyin Öztürk"
+    },
+    "Pazarlama:Zeliha Demir": {
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "first_login": true,
+        "room": "Pazarlama",
+        "person": "Zeliha Demir"
+    },
+    "Pazarlama:Havva Altın": {
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "first_login": true,
+        "room": "Pazarlama",
+        "person": "Havva Altın"
+    },
+    "Pazarlama:Mehmet Tekin": {
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "first_login": true,
+        "room": "Pazarlama",
+        "person": "Mehmet Tekin",
+        "balance": 100
+    },
+    "Satış:Halil Çetin": {
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "first_login": false,
+        "room": "Satış",
+        "person": "Halil Çetin",
+        "balance": 7.0
+    },
+    "Satış:İsmail Aydın": {
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "first_login": false,
+        "room": "Satış",
+        "person": "İsmail Aydın",
+        "balance": 36.69
+    },
+    "Satış:Osman Koç": {
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "first_login": true,
+        "room": "Satış",
+        "person": "Osman Koç"
+    },
+    "Satış:Ahmet Alp": {
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "first_login": false,
+        "room": "Satış",
+        "person": "Ahmet Alp",
+        "balance": 96.0
+    },
+    "Basın:kişi4": {
+        "first_login": true,
+        "room": "Basın",
+        "person": "kişi4",
+        "balance": 100
+    },
+    "Basın:bilal burak": {
+        "first_login": false,
+        "room": "Basın",
+        "person": "bilal burak",
+        "balance": 100.0
+    },
+    "Basın:emir": {
+        "first_login": true,
+        "room": "Basın",
+        "person": "emir",
+        "balance": 166.0
+    },
+    "Yatırım İnşaat:kişi4": {
+        "first_login": true,
+        "room": "Yatırım İnşaat",
+        "person": "kişi4",
+        "balance": 100
+    },
+    "Destek Hizmetleri:Murat Gül": {
+        "first_login": false,
+        "room": "Destek Hizmetleri",
+        "person": "Murat Gül",
+        "balance": 0.0
+    },
+    "Basın:Hasan Bulut": {
+        "first_login": false,
+        "room": "Basın",
+        "person": "Hasan Bulut",
+        "balance": 74.0
+    },
+    "Yatırım İnşaat:weqwe": {
+        "first_login": true,
+        "room": "Yatırım İnşaat",
+        "person": "weqwe",
+        "balance": 100
+    },
+    "Yatırım İnşaat:qeqw": {
+        "first_login": true,
+        "room": "Yatırım İnşaat",
+        "person": "qeqw",
+        "balance": 100
+    },
+    "Yatırım İnşaat:d": {
+        "first_login": true,
+        "room": "Yatırım İnşaat",
+        "person": "d",
+        "balance": 100
+    },
+    "Basın 141:kişi1": {
+        "first_login": true,
+        "room": "Basın 141",
+        "person": "kişi1",
+        "balance": 100
+    },
+    "Basın 141:kişi2": {
+        "first_login": true,
+        "room": "Basın 141",
+        "person": "kişi2",
+        "balance": 100
+    },
+    "Basın 141:kişi3": {
+        "first_login": true,
+        "room": "Basın 141",
+        "person": "kişi3",
+        "balance": 100
+    },
+    "Basın 141:kişi4": {
+        "first_login": true,
+        "room": "Basın 141",
+        "person": "kişi4",
+        "balance": 100
+    }
+}

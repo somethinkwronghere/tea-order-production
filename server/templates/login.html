@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Çay Sipariş Sistemi - Giriş</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .login-container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #6c757d;
+        }
+        .alert {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="header">
+            <h1 class="h3">Çay Sipariş Sistemi</h1>
+            <p class="text-muted">Lütfen giriş yapın</p>
+        </div>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-danger">
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('login') }}">
+            <div class="mb-3">
+                <label for="room" class="form-label">Oda:</label>
+                <select id="room" name="room" class="form-select" required>
+                    <option value="" disabled selected>Oda seçin</option>
+                    {% for room_name in rooms %}
+                    <option value="{{ room_name }}">{{ room_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="person" class="form-label">Kişi:</label>
+                <select id="person" name="person" class="form-select" required>
+                    <option value="" disabled selected>Önce oda seçin</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Şifre:</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+                <div class="form-text">İlk giriş için şifre: 123</div>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="remember" name="remember" value="1" checked>
+                <label class="form-check-label" for="remember">Beni Hatırla (30 gün)</label>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Giriş Yap</button>
+            </div>
+        </form>
+
+        <div class="footer">
+            <p>Çay Sipariş Uygulaması &copy; 2025</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const roomSelect = document.getElementById('room');
+        const personSelect = document.getElementById('person');
+
+        roomSelect.addEventListener('change', () => {
+            const roomName = roomSelect.value;
+            if (roomName) {
+                fetch(`/api/room/${roomName}/persons`)
+                    .then(response => response.json())
+                    .then(persons => {
+                        personSelect.innerHTML = '';
+                        
+                        persons.forEach(person => {
+                            const option = document.createElement('option');
+                            option.value = person;
+                            option.textContent = person;
+                            personSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error('Error loading persons:', error));
+            } else {
+                personSelect.innerHTML = '<option value="" disabled selected>Önce oda seçin</option>';
+            }
+        });
+    </script>
+</body>
+</html> 

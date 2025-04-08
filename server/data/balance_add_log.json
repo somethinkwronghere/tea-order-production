@@ -1,0 +1,56 @@
+[
+    {
+        "timestamp": "2025-03-25 00:11:58",
+        "admin_id": "Bilgi İşlem:Ali Barış",
+        "user_id": "Bilgi İşlem:Emine Doğan",
+        "amount": 500
+    },
+    {
+        "timestamp": "2025-03-25 09:58:11",
+        "admin_id": "Bilgi İşlem:Hasan Bulut",
+        "user_id": "Bilgi İşlem:Ali Barış",
+        "amount": 100
+    },
+    {
+        "timestamp": "2025-03-25 09:58:17",
+        "admin_id": "Bilgi İşlem:Hasan Bulut",
+        "user_id": "Bilgi İşlem:Hasan Bulut",
+        "amount": 100
+    },
+    {
+        "timestamp": "2025-03-25 09:59:05",
+        "admin_id": "Bilgi İşlem:Hasan Bulut",
+        "user_id": "Bilgi İşlem:Ali Barış",
+        "amount": 0.69
+    },
+    {
+        "timestamp": "2025-03-25 10:01:56",
+        "admin_id": "Bilgi İşlem:Hasan Bulut",
+        "user_id": "Basın:bilal burak",
+        "amount": 50
+    },
+    {
+        "timestamp": "2025-03-25 10:15:39",
+        "admin_id": "Satış:Ahmet Alp",
+        "user_id": "Basın:bilal burak",
+        "amount": 400
+    },
+    {
+        "timestamp": "2025-03-25 10:15:43",
+        "admin_id": "Satış:Ahmet Alp",
+        "user_id": "Basın:bilal burak",
+        "amount": 100
+    },
+    {
+        "timestamp": "2025-03-25 10:15:51",
+        "admin_id": "Satış:Ahmet Alp",
+        "user_id": "Basın:bilal burak",
+        "amount": 1052
+    },
+    {
+        "timestamp": "2025-03-25 10:56:42",
+        "admin_id": "Satış:Ahmet Alp",
+        "user_id": "Basın:bilal burak",
+        "amount": 1000
+    }
+]

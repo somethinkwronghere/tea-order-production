@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakiye Yönetimi - Çay Sipariş Sistemi</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .balance-table {
+            margin-top: 20px;
+        }
+        .balance-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .balance-row:hover {
+            background-color: #f8f9fa;
+        }
+        .balance-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .btn-danger {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="bg-primary text-white p-3 mb-4">
+            <h1>Bakiye Yönetimi</h1>
+        </header>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ url_for('admin') }}">Admin Paneli</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('admin') }}">Ana Sayfa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Bakiye Yönetimi</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="card">
+            <div class="card-header">
+                <h2>Kullanıcı Bakiyeleri</h2>
+            </div>
+            <div class="card-body">
+                <div class="balance-table">
+                    <div class="balance-header balance-row">
+                        <strong>Kullanıcı</strong>
+                        <strong>Bakiye</strong>
+                        <strong>İşlemler</strong>
+                    </div>
+                    <div id="balances-container">
+                        <!-- Bakiyeler buraya dinamik olarak eklenecek -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Bakiyeleri yükle ve göster
+        function loadBalances() {
+            fetch('/api/users/balances')
+                .then(response => response.json())
+                .then(balances => {
+                    const container = document.getElementById('balances-container');
+                    container.innerHTML = '';
+                    
+                    Object.entries(balances).forEach(([userId, balance]) => {
+                        const [room, person] = userId.split(':');
+                        const row = document.createElement('div');
+                        row.className = 'balance-row';
+                        row.innerHTML = `
+                            <div>${room} - ${person}</div>
+                            <div>${balance.toFixed(2)} ₺</div>
+                            <div class="balance-actions">
+                                <input type="number" min="1" step="1" onkeydown="return event.keyCode !== 190 && event.keyCode !== 110" oninput="this.value = this.value.replace(/[^0-9]/g, ''); if(this.value.includes('.')) this.value = this.value.split('.')[0];" placeholder="Miktar" class="form-control form-control-sm" style="width: 100px">
+                                <button class="btn btn-success btn-sm" onclick="addBalance('${userId}', this, ${balance})">Bakiye Ekle</button>
+                                <button class="btn btn-danger btn-sm" onclick="deductBalance('${userId}', this, ${balance})">Bakiye Düş</button>
+                            </div>
+                        `;
+                        container.appendChild(row);
+                    });
+                })
+                .catch(error => {
+                    console.error('Bakiyeler yüklenirken hata:', error);
+                });
+        }
+
+        // Bakiye ekleme işlemi
+        function addBalance(userId, button, currentBalance) {
+            const input = button.previousElementSibling;
+            // Convert to integer
+            const amount = parseInt(input.value, 10);
+            
+            if (!amount || isNaN(amount) || amount <= 0) {
+                alert('Lütfen geçerli bir tam sayı girin');
+                return;
+            }
+
+            fetch('/api/balance/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user_id: userId,
+                    amount: amount
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Bakiye başarıyla eklendi');
+                    loadBalances();  // Bakiyeleri yeniden yükle
+                    input.value = '';  // Input'u temizle
+                } else {
+                    alert(data.message || 'Bakiye eklenirken bir hata oluştu');
+                }
+            })
+            .catch(error => {
+                alert('Bir hata oluştu');
+                console.error(error);
+            });
+        }
+
+        // Bakiye düşme işlemi
+        function deductBalance(userId, button, currentBalance) {
+            const input = button.previousElementSibling.previousElementSibling;
+            // Convert to integer
+            const amount = parseInt(input.value, 10);
+            
+            if (!amount || isNaN(amount) || amount <= 0) {
+                alert('Lütfen geçerli bir tam sayı girin');
+                return;
+            }
+
+            // Check if deduction amount is more than current balance
+            const maxDeduction = Math.min(amount, currentBalance);
+            
+            let confirmMessage = `${userId} kullanıcısının bakiyesinden ${amount} TL düşmek istediğinize emin misiniz?`;
+            
+            // If we're going to adjust the amount, notify the user
+            if (maxDeduction < amount) {
+                confirmMessage = `${userId} kullanıcısının bakiyesi ${currentBalance} TL. Bakiyeden ${maxDeduction} TL düşülerek 0 TL yapılacak. Onaylıyor musunuz?`;
+            }
+            
+            // Onay iste
+            if (!confirm(confirmMessage)) {
+                return;
+            }
+
+            fetch('/api/balance/deduct', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user_id: userId,
+                    amount: amount
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    if (data.deducted_amount < amount) {
+                        alert(`Kullanıcının bakiyesi yeterli olmadığı için ${data.deducted_amount} TL düşüldü ve bakiye 0 TL oldu.`);
+                    } else {
+                        alert('Bakiye başarıyla düşüldü');
+                    }
+                    loadBalances();  // Bakiyeleri yeniden yükle
+                    input.value = '';  // Input'u temizle
+                } else {
+                    alert(data.message || 'Bakiye düşülürken bir hata oluştu');
+                }
+            })
+            .catch(error => {
+                alert('Bir hata oluştu');
+                console.error(error);
+            });
+        }
+
+        // Sayfa yüklendiğinde bakiyeleri göster
+        document.addEventListener('DOMContentLoaded', loadBalances);
+    </script>
+</body>
+</html> 
