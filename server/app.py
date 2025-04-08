@@ -9,7 +9,7 @@ from flask_socketio import SocketIO, emit
 from flask_cors import CORS
 
 # Application Configuration
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='/static')
 app.config['SECRET_KEY'] = 'tea-order-secret-key'
 app.config['SESSION_PERMANENT'] = True  # Kalıcı oturum ayarı
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=90)  # 90 gün sürecek oturum
